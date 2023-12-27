@@ -1,0 +1,96 @@
+<h3>Update Employee</h3>
+ 
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group" hidden>
+        <label class="form-label " for="id">id</label><!--for(label) and id(input) should match-->
+        <input class="form-control " type="number" id="id" formControlName="id"><!--formControlName(input) and element name(product.ts) should match-->
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-control" type="text" id="name" formControlName="name">
+        <div *ngIf="form.hasError('required','name') && (form.controls['name'].touched ||
+            form.controls['name'].dirty)" class="alert alert-danger " role="alert">
+            Name is required.
+        </div>
+    </div><br>
+
+    <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="email" id="email" formControlName="email">
+        <div class="alert alert-danger" *ngIf="form.hasError('email','email')&&
+            (form.controls['email'].touched||form.controls['email'].dirty)">
+            Enter in Email format
+        </div>
+        <div class="alert alert-danger" *ngIf="form.hasError('required','email')&&
+            (form.controls['email'].touched||form.controls['email'].dirty)">
+            Email is required
+        </div>
+    </div><br>
+
+    <div class="form-group">
+        <div class="form-check form-check-inline mb-3">
+            <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="male" [value]="2">
+            <label class="form-check-label" for="male">
+              Male
+            </label>
+          </div>
+          <div class="form-check form-check-inline mb-3">
+            <input formControlName="gender" class="form-check-input" type="radio" name="gender" id="Female" [value]="1">
+            <label class="form-check-label" for="female">
+              Female
+            </label>
+          </div>
+        <div *ngIf="form.hasError('required','gender') && (form.controls['gender'].touched ||
+            form.controls['gender'].dirty)" class="alert alert-danger " role="alert">
+            Gender is required.
+        </div>
+    </div><br>
+
+    <div class="form-group">
+        <label class="form-label" for="manufacturedDate">Date Of Birth:</label>
+        <input class="form-control" type="date" id="dateOfBirth" formControlName="dateOfBirth" >
+        <div *ngIf="form.hasError('required','dateOfBirth') && (form.controls['dateOfBirth'].touched ||
+            form.controls['dateOfBirth'].dirty)" class="alert alert-danger " role="alert">
+            Date Of Birth is required.
+        </div>
+    </div><br>
+
+    <div class="form-group">
+        <label class="form-label" for="mobileNo">Mobile No:</label>
+        <input class="form-control" type="number" id="mobileNo" formControlName="mobileNo">
+        <div *ngIf="form.hasError('required','mobileNo') && (form.controls['mobileNo'].touched ||
+            form.controls['mobileNo'].dirty)" class="alert alert-danger " role="alert">
+            Moblie number is required.
+    </div><br>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-check-label " for="department">Department:</label>
+        <select class="form-select" for="department" formControlName="departmentId">
+            <option value="">Select</option>
+            <option *ngFor="let department of deptArray" value="{{department.id}}">{{department.id}} - {{ department.name }}
+            </option> 
+        </select>
+        <div *ngIf="form.hasError('required','department') && (form.controls['department'].touched ||
+            form.controls['department'].dirty)" class="alert alert-danger " role="alert">
+            Department is required.
+        </div>
+    </div><br>
+    
+    <div class="form-group">
+        <label class="form-label" for="salary">Salary:</label>
+        <input class="form-control" type="number" id="salary" formControlName="salary">
+        <div *ngIf="form.hasError('required','salary') && (form.controls['salary'].touched ||
+            form.controls['salary'].dirty)" class="alert alert-danger " role="alert">
+            Please enter your salary.
+        </div>
+    </div><br>
+ 
+ 
+    <div class="form-group">
+        <input class="btn btn-primary " [disabled]="form.invalid" type="submit" value="Update Employee">
+    </div>
+
+</form>
+

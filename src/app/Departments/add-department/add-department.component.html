@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="col">
+        <div class="row">
+
+            <h3>Add Department</h3>
+
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="form-group" hidden> <!--form-group is angular form class-->
+                    <label class="form-label" for="id">Id</label><!--form-label is bootstrap form class-->
+                    <input class="form-control" type="number" id="id"
+                        formControlName="id"><!--form-control is bootstrap form class-->
+                    <!--FORMCONTROLNAME='' is used to print the actual value we have entered in the HTML Form to Angular Form-->
+                    <!--Value in FORMCONTROLNAME should be same as value given in the FormGroup-->
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" formControlName="name">
+                    <div *ngIf="form.hasError('required','name') && (form.controls['name'].touched ||
+                    form.controls['name'].dirty)" class="alert alert-danger  " role="alert">
+                        Name is Required.</div>
+                </div>
+                <div><br>
+                    <input class="btn btn-primary" [disabled]="form.invalid" type="submit" value="Add Department">
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
